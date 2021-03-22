@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">v9</string>
+
+    <string-array name="Theaters">
+        <item>Theater1</item>
+        <item>Theater2</item>
+        <item>Theater3</item>
+        <item>Theater4</item>
+    </string-array>
+    
+    <string-array name="Movies">
+        <item>Movie1</item>
+        <item>Movie2</item>
+        <item>Movie3</item>
+        <item>Movie4</item>
+        <item>Movie5</item>
+        <item>Movie6</item>
+        <item>Movie7</item>
+    </string-array>
+</resources>
