@@ -1,15 +1,25 @@
 package com.example.v9;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class FinnkinoMovie {
 
     private String movieID = "";
     private String movieTitle = "";
-    private String movieStart = "";
+    private String auditorium = "";
+    private LocalDateTime start = null;
 
-    public FinnkinoMovie(String id, String title, String startTime) {
+    public FinnkinoMovie(String id, String title, String startTime, String audit) {
         movieID = id;
         movieTitle = title;
-        movieStart = startTime;
+        auditorium = audit;
+        try {
+            start = LocalDateTime.parse(startTime);
+        } catch (DateTimeException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getMovieID() {
@@ -20,8 +30,20 @@ public class FinnkinoMovie {
         return movieTitle;
     }
 
+    public String getAuditorium() {
+        return auditorium;
+    }
+
+    public LocalDateTime getLDT() {
+        return start;
+    }
+
     public String getStartTime() {
-        return movieStart;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("'Alkaa: 'HH:mm");
+        if( start == null) {
+            return "time not found";
+        }
+        return start.format(formatter);
     }
 
     @Override

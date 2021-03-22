@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.movieView.setText(data.get(position).getMovieTitle());
         holder.timeView.setText(data.get(position).getStartTime());
+        holder.auditView.setText(data.get(position).getAuditorium());
     }
 
     @Override
@@ -42,11 +44,12 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView movieView, timeView;
+        TextView movieView, timeView, auditView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             movieView = itemView.findViewById(R.id.movieView);
             timeView = itemView.findViewById(R.id.timeView);
+            auditView =itemView.findViewById(R.id.auView);
 
         }
     }

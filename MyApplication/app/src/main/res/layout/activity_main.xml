@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to"
+        app:layout_constraintBottom_toTopOf="@+id/timeTo"
+        app:layout_constraintEnd_toEndOf="@+id/timeTo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/timeTo" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="410dp"
@@ -21,127 +31,153 @@
         android:id="@+id/spinner"
         android:layout_width="129dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/textview_border"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.719"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/location"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="200dp"
         android:background="@drawable/textview_border"
         android:ems="10"
         android:gravity="center"
-        android:inputType="text"
         android:hint="location"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.335"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toEndOf="@+id/name"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/date"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="138dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="12dp"
         android:background="@drawable/textview_border"
         android:ems="10"
         android:gravity="center"
+        android:hint="date dd.mm.yyyy"
         android:inputType="date"
-        android:hint="date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintStart_toEndOf="@+id/location"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.473" />
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/textview_border"
         android:ems="10"
         android:gravity="center"
-        android:inputType="text"
         android:hint="movie"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/location"
-        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.242" />
 
     <EditText
-        android:id="@+id/time"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
+        android:id="@+id/timeFrom"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
         android:background="@drawable/textview_border"
         android:ems="10"
         android:gravity="center"
+        android:hint="from: HH:MM"
         android:inputType="time"
-        android:hint="time"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toEndOf="@+id/date"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.473" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="103dp"
-        android:layout_height="36dp"
+    <EditText
+        android:id="@+id/timeTo"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
+        android:background="@drawable/textview_border"
+        android:ems="10"
         android:gravity="center"
-        android:text="Select theater"
+        android:hint="to HH:MM"
+        android:inputType="time"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/spinner"
-        app:layout_constraintHorizontal_bias="0.819"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toEndOf="@+id/timeFrom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.473" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="96dp"
         android:layout_height="42dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="36dp"
         android:onClick="getSelectedArea"
+        android:enabled="false"
         android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.69"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="207dp"
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Finnkino"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.727" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="65dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="32dp"
         android:onClick="refresh"
         app:icon="@android:drawable/ic_popup_sync"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toEndOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.968" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        app:layout_constraintBottom_toTopOf="@+id/date"
+        app:layout_constraintEnd_toEndOf="@+id/date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/date" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="from"
+        app:layout_constraintBottom_toTopOf="@+id/timeFrom"
+        app:layout_constraintEnd_toEndOf="@+id/timeFrom"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/timeFrom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

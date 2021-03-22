@@ -1,6 +1,6 @@
 package com.example.v9;
 
-import android.widget.Spinner;
+
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -9,6 +9,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -36,45 +39,56 @@ public class Finnkino {
         return theaterslist;
     }
 
-    public ArrayList<FinnkinoMovie> getMovieslist() {
-        //TODO
-        return null;
+    public ArrayList<FinnkinoMovie> getMoviesList(String from, String to) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        if (movieslist.size() != 0) {
+            try {
+                ArrayList<FinnkinoMovie> parsedMovies = new ArrayList<>();
+                for (FinnkinoMovie movie : movieslist) {
+                    if(movie.getLDT().toLocalTime().isAfter(LocalTime.parse(from, formatter)) &&
+                            movie.getLDT().toLocalTime().isBefore(LocalTime.parse(to, formatter) ) ) {
+                        parsedMovies.add(movie);
+                    }
+                }
+                return parsedMovies;
+            } catch (DateTimeException e) {
+                e.printStackTrace();
+                return movieslist;
+            }
+        } else {
+            movieslist.add(new FinnkinoMovie("0","no movies found", "notfound",""));
+            return movieslist;
+        }
     }
-    public void readScheduleXML(Spinner spinner, String date) {
+
+    public void readScheduleXML(FinnkinoTheater theater, String date) {
         try {
-            FinnkinoTheater theater = (FinnkinoTheater) spinner.getSelectedItem();
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            String urlString = "https://www.finnkino.fi/xml/Schedule/?area=1016&dt=22.03.2021";
+            String urlString = "https://www.finnkino.fi/xml/Schedule/";
             urlString = urlString + ("?area=" + theater.getTheaterID() + "&dt=" + date );
+            //refresh movieslist
+            movieslist = new ArrayList<>();
+
             Document doc = builder.parse(urlString);
             doc.getDocumentElement().normalize();
             System.out.println("Root element: "+ doc.getDocumentElement().getNodeName());
-
             NodeList nodeList = doc.getDocumentElement().getElementsByTagName("Show");
-
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                //System.out.println("Element: " + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
                     String id = element.getElementsByTagName("ID").item(0).getTextContent();
-                    System.out.print("id: ");
-                    System.out.println(id);
                     String title = element.getElementsByTagName("Title").item(0).getTextContent();
-                    System.out.print("Title: ");
-                    System.out.println(title);
                     String showStart = element.getElementsByTagName("dttmShowStart").item(0).getTextContent();
-                    System.out.print("Starts: ");
-                    System.out.println(showStart);
-                    movieslist.add(new FinnkinoMovie(id,title,showStart));
+                    String auditorium = element.getElementsByTagName("TheatreAuditorium").item(0).getTextContent();
+
+                    movieslist.add(new FinnkinoMovie(id,title,showStart,auditorium));
                 }
 
             }
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
-        } finally {
-            System.out.println("###############¤###################");
         }
     }
 
@@ -85,31 +99,22 @@ public class Finnkino {
             String urlString = "https://www.finnkino.fi/xml/TheatreAreas";
             Document doc = builder.parse(urlString);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element: "+ doc.getDocumentElement().getNodeName());
-
             NodeList nodeList = doc.getDocumentElement().getElementsByTagName("TheatreArea");
-
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                //System.out.println("Element: " + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
                     String id = element.getElementsByTagName("ID").item(0).getTextContent();
-                    System.out.print("Area ID: ");
-                    System.out.println(id);
                     String area = element.getElementsByTagName("Name").item(0).getTextContent();
-                    System.out.print("Area Name: ");
-                    System.out.println(area);
                     theaterslist.add(new FinnkinoTheater(id,area));
                 }
-
 
             }
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
-        } finally {
-            System.out.println("###############¤###################");
         }
+
     }
+
 }

@@ -29,10 +29,10 @@
 
             <TextView
                 android:id="@+id/movieView"
-                android:layout_width="184dp"
-                android:layout_height="33dp"
+                android:layout_width="303dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
                 android:text="Movie"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -40,12 +40,24 @@
 
             <TextView
                 android:id="@+id/timeView"
-                android:layout_width="153dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="105dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
                 android:text="time"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintStart_toStartOf="@+id/movieView"
+                app:layout_constraintTop_toBottomOf="@+id/movieView" />
+
+            <TextView
+                android:id="@+id/auView"
+                android:layout_width="105dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="auditorium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintStart_toEndOf="@+id/timeView"
                 app:layout_constraintTop_toBottomOf="@+id/movieView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
